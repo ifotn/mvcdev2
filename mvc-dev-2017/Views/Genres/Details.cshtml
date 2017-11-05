@@ -1,0 +1,28 @@
+﻿@model mvc_dev_2017.Models.Genre
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Albums for @Model.Name</h2>
+
+<table class="table table-striped table-hover">
+    <tr>
+        <th>Title</th>
+        <th>Artist</th>
+        <th>Price</th>
+        <th>Add to Cart</th>
+    </tr>
+    @foreach (var a in Model.Albums)
+    {
+        <tr>
+            <td>@a.Title</td>
+            <td>@a.Artist.Name</td>
+            <td>@string.Format("{0:c}", a.Price)</td>
+            <td>@Html.ActionLink("Add To Cart", "AddToCart", "ShoppingCart", new { AlbumId = @a.AlbumId }, new { @class = "btn btn-default" } )</td>
+        </tr>
+    }
+</table>
+
+<a href="javascript:history.back();"><< Back</a>
